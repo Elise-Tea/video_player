@@ -60,16 +60,24 @@ document.getElementById('play-button').addEventListener('click', () => {
 document.getElementById('next-button').addEventListener('click', () => {
     // Move to the next video and play it
     // Write your code here for task 3
+    currentvideoIndex = (currentvideoIndex + 1) % videos.length; // Move to the next song index
+    playvideo(isShuffle ? videos : originalList);
 });
 
 document.getElementById('prev-button').addEventListener('click', () => {
     // Move to the previous video and play it
     // Write your code here for task 4
+    currentvideoIndex = (currentvideoIndex - 1 + videos.length) % videos.length; // Move to the next song index
+    playvideo(isShuffle ? videos : originalList);
 });
 
 // Function to shuffle the array in place
 function shuffleArray(array) {
     // Write your code here for task 5
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements to shuffle the array
+    }
 }
 
 // Event listener for the Shuffle button
