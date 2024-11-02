@@ -16,6 +16,13 @@ let isShuffle = false;
 // Function to update the video playlist displayed in the UI
 function updatePlayList(playlist){
     // Write your code here for task 1
+    videoList.innerHTML = '';
+    // Iterate through each video in the playlist and create list elements
+    playlist.forEach(video => {
+        let liElement = document.createElement("li");
+        liElement.innerHTML = `${Object.values(video)[0]}`; // Display video title
+        videoList.appendChild(liElement);
+    });    
 }
 
 // Function to update the UI with video information
@@ -39,6 +46,10 @@ function playvideo(playlist) {
 // Event delegation for video selection in the playlist
 videoList.addEventListener('click', (e) => {
     // Write your code here for task 2
+    if (e.target.tagName === 'LI') {
+        currentvideoIndex = [...videoList.children].indexOf(e.target); // Get the index of the clicked song
+        playvideo(isShuffle ? videos : originalList); // Play the selected song
+    }
 });
 
 // Event listeners for play, next, and previous buttons
